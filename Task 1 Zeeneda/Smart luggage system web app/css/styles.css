@@ -1,0 +1,361 @@
+:root {
+    /* Brand Colors */
+    --primary-blue: #1E3A8A;
+    /* Deep Navy Railway Blue */
+    --accent-gold: #F59E0B;
+    /* Premium Upgrade Gold */
+    --bg-light: #F3F4F6;
+    --text-dark: #111827;
+    --text-light: #6B7280;
+
+    /* Luggage Status Colors */
+    --status-available: #10B981;
+    /* Green */
+    --status-occupied: #EF4444;
+    /* Red */
+    --status-premium: #F59E0B;
+    /* Gold */
+    --status-conflict: #DC2626;
+    /* Dark Red indicating a problem */
+
+    /* Glass Effect */
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.5);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Outfit', sans-serif;
+    color: var(--primary-blue);
+}
+
+/* Navbar */
+.navbar {
+    background: var(--primary-blue);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Outfit';
+    color: white;
+}
+
+.logo .highlight {
+    color: var(--accent-gold);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Layout */
+#main-content {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* UI Components */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+}
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    border-top: 4px solid var(--primary-blue);
+    transition: transform 0.2s;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.metric-card h3 {
+    font-size: 2.2rem;
+    margin: 0.5rem 0;
+    color: var(--text-dark);
+}
+
+.metric-card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background: #152C6B;
+    transform: translateY(-2px);
+}
+
+.btn-gold {
+    background: var(--accent-gold);
+    color: white;
+}
+
+.btn-gold:hover {
+    background: #D97706;
+}
+
+.btn-danger {
+    background: var(--status-conflict);
+}
+
+.btn-danger:hover {
+    background: #B91C1C;
+}
+
+.btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Visual Luggage Slot indicator */
+.rack-visual {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    background: #E5E7EB;
+    padding: 1.5rem;
+    border-radius: 12px;
+    overflow-x: auto;
+}
+
+.slot {
+    min-width: 100px;
+    height: 120px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+}
+
+.slot-available {
+    background: var(--status-available);
+}
+
+.slot-occupied {
+    background: var(--status-occupied);
+}
+
+.slot-premium {
+    background: var(--status-premium);
+}
+
+.slot-yours {
+    background: var(--primary-blue);
+    animation: pulse border 2s infinite;
+    border: 3px solid white;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(30, 58, 138, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(30, 58, 138, 0);
+    }
+}
+
+/* Forms */
+.form-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+/* QR Container */
+#qr-container {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: var(--shadow-sm);
+    margin: 1.5rem 0;
+}
+
+/* Scanner Mock */
+.scanner-window {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    background: #000;
+    border-radius: 12px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.scanner-line {
+    width: 100%;
+    height: 2px;
+    background: #10B981;
+    position: absolute;
+    top: 50%;
+    box-shadow: 0 0 15px 5px rgba(16, 185, 129, 0.5);
+    animation: scan 2s infinite alternate ease-in-out;
+}
+
+@keyframes scan {
+    0% {
+        top: 10%;
+    }
+
+    100% {
+        top: 90%;
+    }
+}
+
+/* Badges */
+.badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-warning {
+    background: rgba(245, 158, 11, 0.15);
+    color: #B45309;
+}
+
+.badge-danger {
+    background: rgba(220, 38, 38, 0.15);
+    color: #991B1B;
+}
+
+.badge-success {
+    background: rgba(16, 185, 129, 0.15);
+    color: #065F46;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 0.5rem;
+    }
+
+    .nav-links a {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}
